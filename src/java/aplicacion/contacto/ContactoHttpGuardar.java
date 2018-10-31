@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
         urlPatterns = {"/contactos/guardar"})
 
 
+
+
 public class ContactoHttpGuardar extends HttpServlet {
 
 
@@ -64,8 +66,7 @@ public class ContactoHttpGuardar extends HttpServlet {
             }            
             
             response.sendRedirect("/Agenda/contactos");
-            
-            
+
             
         } 
         catch (Exception ex) {            

@@ -49,7 +49,6 @@ public class ContactoHttpMostrar extends HttpServlet {
             request.getRequestDispatcher("/Contacto/mostrar.jsp").forward(request, response);  
             
             
-            
         } 
         catch (Exception ex) {            
             PrintWriter out = response.getWriter();
