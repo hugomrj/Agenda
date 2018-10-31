@@ -19,34 +19,51 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hugo
  */
-@WebServlet(name = "ContactoHttpMostrar", 
-        urlPatterns = {"/contactos/*"})
+@WebServlet(name = "ContactoHttpGuardar", 
+        urlPatterns = {"/contactos/guardar"})
 
 
-
-public class ContactoHttpMostrar extends HttpServlet {
+public class ContactoHttpGuardar extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-      
+                      
+            String accion = request.getParameter("accion").trim();   
+            
+
+            
+            if (accion.endsWith("cancelar")){
+                response.sendRedirect("/Agenda/contactos");
+                return;
+            }
+                    
         
         try {     
-      
+                   
             
-            
-            ContactoDAO dao = new ContactoDAO();
+            String id = request.getParameter("id");
+            String nombre = request.getParameter("nombre");
+            String apellido = request.getParameter("apellido");
+                        
 
-            String[] codigoid = request.getPathInfo().split("/");     
-            if (codigoid.length == 2){                     
+            if (id != null){                    
+                ContactoDAO dao = new ContactoDAO();           
+
                 
-                Contacto contacto = dao.filtrar( Integer.parseInt( codigoid[1] ));
-                request.setAttribute("contacto", contacto);
+                if (accion.endsWith("agregar")){
+                    dao.insertar(Integer.parseInt(id), nombre, apellido);                       
+                }
+
                 
-            }
+                if (accion.endsWith("editar")){
+                    dao.actualizar(Integer.parseInt(id), nombre, apellido);                    
+                }
+                
+            }            
             
-            request.getRequestDispatcher("/Contacto/mostrar.jsp").forward(request, response);  
+            response.sendRedirect("/Agenda/contactos");
             
             
             
@@ -74,7 +91,7 @@ public class ContactoHttpMostrar extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ContactoHttpMostrar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ContactoHttpGuardar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -92,7 +109,7 @@ public class ContactoHttpMostrar extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ContactoHttpMostrar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ContactoHttpGuardar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

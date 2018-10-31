@@ -19,8 +19,10 @@
         
         <h3>Lista de Contactos</h3>
         
-            
-        <a href="/Agenda/contactos/nuevo" class="button" >Agregar contacto</a>        
+        
+        <br>
+        <a href="/Agenda/contactos/nuevo" >Agregar contacto</a>        
+        <br><br>
         
             
             
@@ -44,12 +46,19 @@
                             
                                                         
                             <td>
+                                
                                 <span class="h6">
                                     <a href="/Agenda/contactos/<c:out value="${contactolista.id}"/>">
                                         mostrar</a></span>
                                         
-                                <span class="h6"><a href="/Agenda/contactos/">editar</a></span>
-                                <span class="h6"><a href="/Agenda/contactos/">borrar</a></span>                                
+                                <span class="h6">
+                                    <a href="/Agenda/contactos/editar/<c:out value="${contactolista.id}"/>">
+                                        editar</a></span>                                        
+                                
+                                <span class="h6">
+                                    <a href="/Agenda/contactos/borrar/<c:out value="${contactolista.id}"/>">
+                                        borrar</a></span>                                        
+                                
                             </td>
 
                             

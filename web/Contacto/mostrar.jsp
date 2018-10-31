@@ -15,41 +15,40 @@
     </head>
     <body>
         
-        <h3>Nuevo Contacto</h3>
+        <h3>Contacto</h3>
         
         
-            <form action="/Agenda/contactos/agregar" method="post">
+            <form action="/Agenda/contactos" method="post">
                 
               
                 <label for="id">Id:</label>              
-                <input type="text" name="id">              
+                <input type="text" name="id"                       
+                       value="${contacto.id}"
+                       disabled>              
                 <br>
 
 
                 <label for="nombre">Nombre:</label>     
-                <input type="text" name="nombre" >
+                <input type="text" name="nombre"
+                       readonly="readonly"
+                       value="${contacto.nombre}"
+                       disabled>
                 <br>
 
 
                 <label for="apellido">Apellido:</label>     
-                <input type="text" name="apellido" >
+                <input type="text" name="apellido" 
+                       readonly="readonly"
+                       value="${contacto.apellido}"
+                       disabled>
                 <br>              
 
                                 
                 <button type="submit" 
-                      name="accion_agregar"   
+                      name="accion_lista"   
                       class="button button-default">
-                    Agregar
+                    Lista
                </button>                
-
-                <button type="submit" 
-                      name="accion_cancelar"   
-                      class="button button-default">
-                    Cancelar
-               </button>
-
-
-                     
 
             </form>
       

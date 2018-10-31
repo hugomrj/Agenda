@@ -18,7 +18,7 @@
         <h3>Nuevo Contacto</h3>
         
         
-            <form action="/Agenda/contactos/agregar" method="post">
+            <form action="/Agenda/contactos/guardar" method="post">
                 
               
                 <label for="id">Id:</label>              
@@ -37,13 +37,15 @@
 
                                 
                 <button type="submit" 
-                      name="accion_agregar"   
+                      name="accion"   
+                      value="agregar"
                       class="button button-default">
                     Agregar
                </button>                
 
                 <button type="submit" 
-                      name="accion_cancelar"   
+                      name="accion"   
+                      value="cancelar"
                       class="button button-default">
                     Cancelar
                </button>

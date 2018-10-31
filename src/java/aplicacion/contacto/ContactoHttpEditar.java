@@ -3,32 +3,60 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 package aplicacion.contacto;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author hugo
+ */
+@WebServlet(name = "ContactoHttpEditar", 
+        urlPatterns = {"/contactos/editar/*"})
 
-@WebServlet(name = "ContactoHttpNuevo", 
-        urlPatterns = {"/contactos/nuevo"})
 
 
-public class ContactoHttpNuevo extends HttpServlet {
+public class ContactoHttpEditar extends HttpServlet {
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            
-                request.getRequestDispatcher("/Contacto/nuevo.jsp").forward(request, response);                    
-            
+      
         
+        try {     
+      
+            
+            String[] codigoid = request.getPathInfo().split("/");     
+            if (codigoid.length == 2){                     
+                
+                ContactoDAO dao = new ContactoDAO();       
+                
+                Contacto contacto = dao.filtrar( Integer.parseInt( codigoid[1] ));
+                
+                request.setAttribute("contacto", contacto);
+                
+            }
+                       
+            
+            request.getRequestDispatcher("/Contacto/editar.jsp").forward(request, response);  
+            
+            
+        } 
+        catch (Exception ex) {            
+            PrintWriter out = response.getWriter();
+            out.println(ex.getMessage());
+        }  
+
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -43,7 +71,11 @@ public class ContactoHttpNuevo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ContactoHttpEditar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -57,7 +89,11 @@ public class ContactoHttpNuevo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ContactoHttpEditar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -71,8 +107,3 @@ public class ContactoHttpNuevo extends HttpServlet {
     }// </editor-fold>
 
 }
-
-
-
-
-

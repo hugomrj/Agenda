@@ -15,43 +15,56 @@
     </head>
     <body>
         
-        <h3>Nuevo Contacto</h3>
+        <h3>Editar Contacto</h3>
         
         
             <form action="/Agenda/contactos/guardar" method="post">
                 
               
+                
+                
                 <label for="id">Id:</label>              
-                <input type="text" name="id">              
+                <input type="text" name="id"                       
+                       readonly="readonly"
+                       value="${contacto.id}"
+                       >              
                 <br>
 
 
+                
                 <label for="nombre">Nombre:</label>     
-                <input type="text" name="nombre" >
+                <input type="text" name="nombre"                       
+                       value="${contacto.nombre}"
+                       >
                 <br>
 
 
                 <label for="apellido">Apellido:</label>     
-                <input type="text" name="apellido" >
+                <input type="text" name="apellido"                        
+                       value="${contacto.apellido}"
+                       >
                 <br>              
 
+                
                                 
                 <button type="submit" 
                       name="accion"   
-                      value="agregar"
+                      value="editar"
                       class="button button-default">
-                    Agregar
+                    Editar
                </button>                
 
+                
+                
                 <button type="submit" 
                       name="accion"   
                       value="cancelar"
                       class="button button-default">
                     Cancelar
                </button>
-
-
-                     
+                
+                                
+             
 
             </form>
       

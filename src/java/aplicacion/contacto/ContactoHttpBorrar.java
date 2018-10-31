@@ -19,35 +19,32 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hugo
  */
-@WebServlet(name = "ContactoHttpAgregar", urlPatterns = {"/contactos/agregar"})
-public class ContactoHttpAgregar extends HttpServlet {
+@WebServlet(name = "ContactoHttpBorrar", 
+        urlPatterns = {"/contactos/borrar/*"})
+
+
+public class ContactoHttpBorrar extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-      
-        
-        
-            String accion_cancelar = request.getParameter("accion_cancelar");   
-            if (accion_cancelar != null){
-                response.sendRedirect("/Agenda/contactos");
-                return;
-            }
-                    
+            
         
         try {     
-                   
-            
-            String id = request.getParameter("id");
-            String nombre = request.getParameter("nombre");
-            String apellido = request.getParameter("apellido");
+      
                         
-            if (id != null){                    
-                ContactoDAO dao = new ContactoDAO();                           
-                dao.insert(Integer.parseInt(id), nombre, apellido);                
-            }            
+            ContactoDAO dao = new ContactoDAO();
+            
+            String[] codigoid = request.getPathInfo().split("/");     
+            if (codigoid.length == 2){                     
+                
+                dao.borrar(Integer.parseInt( codigoid[1] ));
+                
+            }
+                       
             response.sendRedirect("/Agenda/contactos");
+            
         } 
         catch (Exception ex) {            
             PrintWriter out = response.getWriter();
@@ -72,7 +69,7 @@ public class ContactoHttpAgregar extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ContactoHttpAgregar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ContactoHttpBorrar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -90,7 +87,7 @@ public class ContactoHttpAgregar extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ContactoHttpAgregar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ContactoHttpBorrar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

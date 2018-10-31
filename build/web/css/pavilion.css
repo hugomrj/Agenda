@@ -1887,6 +1887,8 @@ mark {
     border: 1px solid transparent;
     border-radius: 4px;
     cursor: pointer;
+    
+    width: 100px;
 }
 
 .button:focus {
@@ -2220,7 +2222,7 @@ hr {
 [disabled] {
     pointer-events: none;
     cursor: default;
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 .disabled [disabled],

@@ -25,6 +25,13 @@ public class test {
     
             Conexion conexion = new Conexion();
             conexion.conectar();
+            
+            ContactoDAO dao = new ContactoDAO();
+            
+            Contacto c = dao.filtrar(10);
+            
+            System.out.println(c.getNombre());
+                        
 
     }
         
