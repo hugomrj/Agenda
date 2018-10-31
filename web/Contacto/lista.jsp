@@ -7,19 +7,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
         
         <link rel="stylesheet" href="/Agenda/css/pavilion.css">
-
-
         
     </head>
     <body>
         
         
         <h3>Lista de Contactos</h3>
-
         
             
         <a href="/Agenda/contactos/nuevo" class="button" >Agregar contacto</a>        
@@ -32,6 +30,7 @@
                         <th>id</th>
                         <th>nombre</th>
                         <th>apellido</th>
+                        <th>acciones</th>
                     </tr>
                 </thead>
                 
@@ -42,6 +41,18 @@
                             <td><c:out value="${contactolista.id}"/></td>
                             <td><c:out value="${contactolista.nombre}"/></td>
                             <td><c:out value="${contactolista.apellido}"/></td>
+                            
+                                                        
+                            <td>
+                                <span class="h6">
+                                    <a href="/Agenda/contactos/<c:out value="${contactolista.id}"/>">
+                                        mostrar</a></span>
+                                        
+                                <span class="h6"><a href="/Agenda/contactos/">editar</a></span>
+                                <span class="h6"><a href="/Agenda/contactos/">borrar</a></span>                                
+                            </td>
+
+                            
                         </tr>
                         
                     </c:forEach>

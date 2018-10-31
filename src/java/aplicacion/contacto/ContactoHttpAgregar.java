@@ -27,25 +27,34 @@ public class ContactoHttpAgregar extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
       
+        
+        
+            String accion_cancelar = request.getParameter("accion_cancelar");   
+            if (accion_cancelar != null){
+                response.sendRedirect("/Agenda/contactos");
+                return;
+            }
+                    
+        
         try {     
-                        
+                   
+            
             String id = request.getParameter("id");
             String nombre = request.getParameter("nombre");
             String apellido = request.getParameter("apellido");
                         
-            if (id != null){
-                    
+            if (id != null){                    
                 ContactoDAO dao = new ContactoDAO();                           
-                dao.insert(Integer.parseInt(id), nombre, apellido);
-
+                dao.insert(Integer.parseInt(id), nombre, apellido);                
             }            
-        } 
-        catch (Exception ex) {
-            System.out.println(ex.getMessage());                
-        }  
-        finally{
             response.sendRedirect("/Agenda/contactos");
-        }
+        } 
+        catch (Exception ex) {            
+            PrintWriter out = response.getWriter();
+            out.println(ex.getMessage());
+        }  
+
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

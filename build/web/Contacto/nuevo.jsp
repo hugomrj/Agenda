@@ -7,14 +7,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
         
         <link rel="stylesheet" href="/Agenda/css/pavilion.css">
         
     </head>
     <body>
         
-        <h3>Nuevo Contactos</h3>
+        <h3>Nuevo Contacto</h3>
         
         
             <form action="/Agenda/contactos/agregar" method="post">
@@ -34,7 +35,21 @@
                 <input type="text" name="apellido" >
                 <br>              
 
-                <input type="submit" value="Guardar"   class="button button-default">
+                                
+                <button type="submit" 
+                      name="accion_agregar"   
+                      class="button button-default">
+                    Agregar
+               </button>                
+
+                <button type="submit" 
+                      name="accion_cancelar"   
+                      class="button button-default">
+                    Cancelar
+               </button>
+
+
+                     
 
             </form>
       
